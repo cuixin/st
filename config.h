@@ -86,26 +86,47 @@ unsigned int tabspaces = 8;
 unsigned int alpha = 0xed;
 
 static const char *colorname[] = {
-	"#282828", /* hard contrast: #1d2021 / soft contrast: #32302f */
-	"#cc241d",
-	"#98971a",
-	"#d79921",
-	"#458588",
-	"#b16286",
-	"#689d6a",
-	"#a89984",
-	"#928374",
-	"#fb4934",
-	"#b8bb26",
-	"#fabd2f",
-	"#83a598",
-	"#d3869b",
-	"#8ec07c",
-	"#ebdbb2",
-	[255] = 0,
-	/* more colors can be added after 255 to use with DefaultXX */
-	"black",   /* 256 -> bg */
-	"white",   /* 257 -> fg */
+	/* "#282828", /\* hard contrast: #1d2021 / soft contrast: #32302f *\/ */
+	/* "#cc241d", */
+	/* "#98971a", */
+	/* "#d79921", */
+	/* "#458588", */
+	/* "#b16286", */
+	/* "#689d6a", */
+	/* "#a89984", */
+	/* "#928374", */
+	/* "#fb4934", */
+	/* "#b8bb26", */
+	/* "#fabd2f", */
+	/* "#83a598", */
+	/* "#d3869b", */
+	/* "#8ec07c", */
+	/* "#ebdbb2", */
+	/* [255] = 0, */
+	/* /\* more colors can be added after 255 to use with DefaultXX *\/ */
+	/* "black",   /\* 256 -> bg *\/ */
+	/* "white",   /\* 257 -> fg *\/ */
+
+       /* dracula theme color */
+       "#000000", /* black	  */
+       "#ff5555", /* red	  */
+       "#50fa7b", /* green	  */
+       "#f1fa8c", /* yellow	 */
+       "#bd93f9", /* blue	  */
+       "#ff79c6", /* magenta */
+       "#8be9fd", /* cyan	  */
+       "#bbbbbb", /* white	  */
+       "#44475a", /* black	  */
+       "#ff5555", /* red	   */
+       "#50fa7b", /* green	  */
+       "#f1fa8c", /* yellow  */
+       "#bd93f9", /* blue	   */
+       "#ff79c6", /* magenta */
+       "#8be9fd", /* cyan	   */
+       "#ffffff", /* white	  */
+       [255] = 0,
+       "#282a36", /* background */
+	   "#f8f8f2", /* foreground */
 };
 
 
@@ -113,10 +134,20 @@ static const char *colorname[] = {
  * Default colors (colorname index)
  * foreground, background, cursor, reverse cursor
  */
-unsigned int defaultfg = 15;
-unsigned int defaultbg = 0;
-static unsigned int defaultcs = 15;
-static unsigned int defaultrcs = 0;
+
+/* unsigned int defaultfg = 15; */
+/* unsigned int defaultbg = 0; */
+/* static unsigned int defaultcs = 15; */
+/* static unsigned int defaultrcs = 0; */
+
+/* dracula theme color */
+/* unsigned int defaultfg = 7; */
+/* unsigned int defaultbg = 0; */
+/* unsigned int defaultcs = 256; */
+unsigned int defaultfg = 257;
+unsigned int defaultbg = 256;
+unsigned int defaultcs = 257;
+unsigned int defaultrcs = 257;
 
 /*
  * Default shape of cursor
@@ -125,7 +156,7 @@ static unsigned int defaultrcs = 0;
  * 6: Bar ("|")
  * 7: Snowman ("☃")
  */
-static unsigned int cursorshape = 4;
+static unsigned int cursorshape = 2;
 
 /*
  * Default columns and rows numbers
@@ -197,12 +228,8 @@ static MouseShortcut mshortcuts[] = {
 
 MouseKey mkeys[] = {
 	/* button               mask            function        argument */
-	{ Button4,              XK_ANY_MOD,     kscrollup,      {.i =  1} },
-	{ Button5,              XK_ANY_MOD,     kscrolldown,    {.i =  1} },
-	{ Button4,              ShiftMask,      kscrollup,      {.i =  1} },
-	{ Button5,              ShiftMask,      kscrolldown,    {.i =  1} },
-	{ Button4,              MODKEY,         kscrollup,      {.i =  1} },
-	{ Button5,              MODKEY,         kscrolldown,    {.i =  1} },
+	{ Button4,              XK_ANY_MOD,     kscrollup,      {.i =  5} },
+	{ Button5,              XK_ANY_MOD,     kscrolldown,    {.i =  5} },
 	{ Button4,              MODKEY|ShiftMask,         zoom,      {.f =  +1} },
 	{ Button5,              MODKEY|ShiftMask,         zoom,    {.f =  -1} },
 };
@@ -230,12 +257,12 @@ static Shortcut shortcuts[] = {
 	{ ShiftMask,            XK_Page_Down,   kscrolldown,    {.i = -1} },
 	{ MODKEY,               XK_Page_Up,     kscrollup,      {.i = -1} },
 	{ MODKEY,               XK_Page_Down,   kscrolldown,    {.i = -1} },
-	{ MODKEY,            	XK_k,  		kscrollup,      {.i =  1} },
-	{ MODKEY,            	XK_j,   	kscrolldown,    {.i =  1} },
+	{ MODKEY,            	XK_k,  		kscrollup,      {.i =  -1} },
+	{ MODKEY,            	XK_j,   	kscrolldown,    {.i =  -1} },
 	{ MODKEY,            	XK_Up,  	kscrollup,      {.i =  1} },
 	{ MODKEY,            	XK_Down,   	kscrolldown,    {.i =  1} },
-	{ MODKEY,	        XK_u,		kscrollup,      {.i = -1} },
-	{ MODKEY,  		XK_d,		kscrolldown,   	{.i = -1} },
+	/* { MODKEY,	        XK_u,		kscrollup,      {.i = -1} }, */
+	/* { MODKEY,  		XK_d,		kscrolldown,   	{.i = -1} }, */
 	{ MODKEY|ShiftMask,     XK_Up,          zoom,           {.f = +1} },
 	{ MODKEY|ShiftMask,     XK_Down,        zoom,           {.f = -1} },
 	{ MODKEY|ShiftMask,     XK_K,           zoom,           {.f = +1} },
